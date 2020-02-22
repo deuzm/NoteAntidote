@@ -12,27 +12,29 @@ import UIKit
 class CardTableViewController: UITableViewController {
 
     //MARK: - properties
-    var cards: [Card] = [ Card(tasks: [Task(title: "Lol")], cardTitleText: "Leave me") ]
-
+    var cards: [Card] = [Card(tasks: [Task(cardId: 1, taskId: 1, title: "TODO")], cardTitleText: "Liliac", cardDescription: "Bronze")]
+    var cardData = CardData()
+    var cardId: Int = 0
     
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//    }
+//    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Cards"
         
+        cards = cardData.readCards()
+        
         tableView.separatorColor = .black
         
         tableView.register(CardTableViewCell.self, forCellReuseIdentifier: "cellId")
-        
-        //toDo reading card info from server:
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    //MARK: - actions
+    
+    
     //MARK: - make button with text
     
     func makeButtonWithText(text:String) -> UIButton {
@@ -44,36 +46,13 @@ class CardTableViewController: UITableViewController {
         return button
     }
     
-    
-    @objc func addSection()
+    //MARK: - adding card(going to card setter page)
+    @objc func addCard()
     {
         self.performSegue(withIdentifier: "cardSetter", sender: self)
-        
-//        cards.append(Card(tasks: [Task(title: "Lol")], cardTitleText: "Leave me"))
-//
-//        print("\(cards.count - 1)")
-//        let indexPath = IndexPath(row: cards.count - 1, section: 0)
-        
-//        
-//        
-//        tableView.beginUpdates()
-//        
-//        tableView.insertRows(at: [indexPath], with: .automatic)
-//        
-//        tableView.endUpdates()
+
     }
     
-    //MARK: - segue
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//       if segue.identifier == "cardSetter" {
-//           if let destination = segue.destination as? CardTableViewController {
-//            destination // you can pass value to destination view controller
-//            segue.destination.na
-//               // destination.nomb = arrayNombers[(sender as! UIButton).tag] // Using button Tag
-//           }
-//       }
-//    }
-
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -84,9 +63,19 @@ class CardTableViewController: UITableViewController {
         return cards.count
     }
 
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete{
+            
+            cardData.deleteCard(cardId: cards[indexPath.row].id)
+            cards.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        }
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CardTableViewCell
+        cell.cardTitleLabel.text = cards[indexPath.row].titleText
+        cell.cardDescriptionLabel .text = cards[indexPath.row].cardDescription
         return cell
     }
     
@@ -94,6 +83,23 @@ class CardTableViewController: UITableViewController {
         return 100
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cardId = cards[indexPath.row].cardId
+        self.performSegue(withIdentifier: "Items", sender: self)
+    }
+    
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let navVC = segue.destination as? UINavigationController
+        {
+            if let tableVC = navVC.viewControllers.first as? ItemsViewController
+            {
+                tableVC.cardId = cardId
+            }
+        }
+    }
+
+  
     
     //MARK: - adding footer
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -103,7 +109,7 @@ class CardTableViewController: UITableViewController {
         50)
         let button = makeButtonWithText(text: "Add")
         footerView.addSubview(button)
-        button.addTarget(self, action: #selector(addSection), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addCard), for: .touchUpInside)
         return footerView
     }
     
@@ -113,13 +119,29 @@ class CardTableViewController: UITableViewController {
     
     //MARK: - segues
     
-    @IBAction func cancel(segue:UIStoryboardSegue) {
-      
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
-
+    
+    @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {
+    }
+    
     @IBAction func done(segue:UIStoryboardSegue) {
          
     }
+
+    
+    @IBAction func unwindFromCardSetterVC(sender: UIStoryboardSegue) {
+        if sender.source is CardSetterViewController {
+            if let senderVC = sender.source as? CardSetterViewController {
+                cards = senderVC.cards
+            }
+            tableView.reloadData()
+        }
+    }
+
+
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -152,8 +174,7 @@ class CardTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
+    }*/
 
     /*
     // MARK: - Navigation

@@ -9,7 +9,7 @@
 import UIKit
 import SQLite3
 
-class cardData {
+class CardData {
     //MARK: - properties
     
     let dbPath: String = "cardDb.sqlite"
@@ -20,6 +20,10 @@ class cardData {
         db = openDatabase()
         createTable(tableStringPart: "card(Id INTEGER PRIMARY KEY,cardTitle TEXT,cardDescription TEXT);")
         createTable(tableStringPart: "task(Id INTEGER PRIMARY KEY,itemTitle TEXT);")
+    }
+    
+    func refresh() {
+        db = openDatabase()
     }
     
     func openDatabase() -> OpaquePointer?
@@ -118,13 +122,13 @@ class cardData {
     func readTasks(cardId: Int) -> [Task]? {
         var tasks: [Task] = []
         let itemQcueryStatementString = "SELECT * FROM task;"
-        var (taskQueryStatement): OpaquePointer? = nil
+        var taskQueryStatement: OpaquePointer? = nil
         
-        if sqlite3_prepare_v2(db, itemQcueryStatementString, -1, &(taskQueryStatement), nil) == SQLITE_OK {
-            while sqlite3_step((taskQueryStatement)) == SQLITE_ROW {
+        if sqlite3_prepare_v2(db, itemQcueryStatementString, -1, &taskQueryStatement, nil) == SQLITE_OK {
+            while sqlite3_step(taskQueryStatement) == SQLITE_ROW {
                 let id = sqlite3_column_int((taskQueryStatement), 0)
-                let taskTitle = String(describing: String(cString: sqlite3_column_text((taskQueryStatement), 1)))
-                let card = sqlite3_column_int((taskQueryStatement), 3)
+                let taskTitle = String(describing: String(cString: sqlite3_column_text(taskQueryStatement, 1)))
+                let card = sqlite3_column_int(taskQueryStatement, 3)
                 if(cardId == id)
                 {
                     tasks.append(Task(cardId: Int(card), taskId: Int(id), title: taskTitle))

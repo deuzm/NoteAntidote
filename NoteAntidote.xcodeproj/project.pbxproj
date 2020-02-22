@@ -3,10 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0B594B23FDC4F800135BDC /* cardsSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B594A23FDC4F800135BDC /* cardsSingleton.swift */; };
+		1D1DE25023FDBC2D00861655 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1DE24F23FDBC2D00861655 /* ItemsViewController.swift */; };
+		1D32F42523FC59EF0078EDC3 /* CardSetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D32F42423FC59EF0078EDC3 /* CardSetterViewController.swift */; };
+		1DA4ECC923FC1929007C99A4 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA4ECC823FC1929007C99A4 /* RootViewController.swift */; };
+		1DAF125823FD605600B5F8F5 /* cardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAF125723FD605600B5F8F5 /* cardData.swift */; };
+		1DAF125923FD605600B5F8F5 /* cardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAF125723FD605600B5F8F5 /* cardData.swift */; };
+		1DD3AD1223FD959100BCABA2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD3AD1123FD958100BCABA2 /* libsqlite3.tbd */; };
 		1DD7A35823FA8BF800280894 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7A35723FA8BF800280894 /* AppDelegate.swift */; };
 		1DD7A35A23FA8BF800280894 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7A35923FA8BF800280894 /* SceneDelegate.swift */; };
 		1DD7A35C23FA8BF800280894 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7A35B23FA8BF800280894 /* ViewController.swift */; };
@@ -14,7 +21,13 @@
 		1DD7A36123FA8BFB00280894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DD7A36023FA8BFB00280894 /* Assets.xcassets */; };
 		1DD7A36423FA8BFB00280894 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD7A36223FA8BFB00280894 /* LaunchScreen.storyboard */; };
 		1DD7A36F23FA8BFB00280894 /* NoteAntidoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7A36E23FA8BFB00280894 /* NoteAntidoteTests.swift */; };
-		1DD7A37A23FA8BFC00280894 /* NoteAntidoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7A37923FA8BFC00280894 /* NoteAntidoteUITests.swift */; };
+		1DD7A37A23FA8BFC00280894 /* NoteAntidoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7A37923FA8BFC00280894 /* NoteAntidoteUITests.swift */; platformFilter = ios; };
+		1DD7A38C23FA997E00280894 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7A38B23FA997E00280894 /* CardTableViewCell.swift */; };
+		1DD7A38E23FABAA700280894 /* CardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD7A38D23FABAA700280894 /* CardTableViewController.swift */; };
+		1DF2C6CF23FB0644004FCB5A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2C6CE23FB0644004FCB5A /* Task.swift */; };
+		1DF2C6D023FB0644004FCB5A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2C6CE23FB0644004FCB5A /* Task.swift */; };
+		1DF2C6D223FB0652004FCB5A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2C6D123FB0652004FCB5A /* Card.swift */; };
+		1DF2C6D323FB0652004FCB5A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF2C6D123FB0652004FCB5A /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D0B594A23FDC4F800135BDC /* cardsSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardsSingleton.swift; sourceTree = "<group>"; };
+		1D1DE24F23FDBC2D00861655 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		1D32F42423FC59EF0078EDC3 /* CardSetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardSetterViewController.swift; sourceTree = "<group>"; };
+		1DA4ECC823FC1929007C99A4 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		1DAF125723FD605600B5F8F5 /* cardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardData.swift; sourceTree = "<group>"; };
+		1DD3AD1123FD958100BCABA2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1DD7A35423FA8BF800280894 /* NoteAntidote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteAntidote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DD7A35723FA8BF800280894 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DD7A35923FA8BF800280894 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +68,10 @@
 		1DD7A37523FA8BFC00280894 /* NoteAntidoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoteAntidoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DD7A37923FA8BFC00280894 /* NoteAntidoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAntidoteUITests.swift; sourceTree = "<group>"; };
 		1DD7A37B23FA8BFC00280894 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DD7A38B23FA997E00280894 /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		1DD7A38D23FABAA700280894 /* CardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewController.swift; sourceTree = "<group>"; };
+		1DF2C6CE23FB0644004FCB5A /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		1DF2C6D123FB0652004FCB5A /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DD3AD1223FD959100BCABA2 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +100,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D0B594C23FDC53000135BDC /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				1D0B594A23FDC4F800135BDC /* cardsSingleton.swift */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
+		1DA4ECC323FB1F99007C99A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DD3AD1123FD958100BCABA2 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1DA4ECCC23FC310B007C99A4 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		1DD7A34B23FA8BF800280894 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +130,7 @@
 				1DD7A36D23FA8BFB00280894 /* NoteAntidoteTests */,
 				1DD7A37823FA8BFC00280894 /* NoteAntidoteUITests */,
 				1DD7A35523FA8BF800280894 /* Products */,
+				1DA4ECC323FB1F99007C99A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,12 +147,19 @@
 		1DD7A35623FA8BF800280894 /* NoteAntidote */ = {
 			isa = PBXGroup;
 			children = (
+				1D32F42423FC59EF0078EDC3 /* CardSetterViewController.swift */,
 				1DD7A35723FA8BF800280894 /* AppDelegate.swift */,
 				1DD7A35923FA8BF800280894 /* SceneDelegate.swift */,
 				1DD7A35B23FA8BF800280894 /* ViewController.swift */,
+				1D1DE24F23FDBC2D00861655 /* ItemsViewController.swift */,
+				1DA4ECC823FC1929007C99A4 /* RootViewController.swift */,
+				1DD7A38D23FABAA700280894 /* CardTableViewController.swift */,
+				1DA4ECCC23FC310B007C99A4 /* View Controllers */,
+				1DD7A38B23FA997E00280894 /* CardTableViewCell.swift */,
 				1DD7A35D23FA8BF800280894 /* Main.storyboard */,
-				1DD7A36023FA8BFB00280894 /* Assets.xcassets */,
+				1DF2C6D423FB0656004FCB5A /* Models */,
 				1DD7A36223FA8BFB00280894 /* LaunchScreen.storyboard */,
+				1DD7A36023FA8BFB00280894 /* Assets.xcassets */,
 				1DD7A36523FA8BFB00280894 /* Info.plist */,
 			);
 			path = NoteAntidote;
@@ -128,6 +183,17 @@
 			path = NoteAntidoteUITests;
 			sourceTree = "<group>";
 		};
+		1DF2C6D423FB0656004FCB5A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1DF2C6CE23FB0644004FCB5A /* Task.swift */,
+				1DF2C6D123FB0652004FCB5A /* Card.swift */,
+				1DAF125723FD605600B5F8F5 /* cardData.swift */,
+				1D0B594C23FDC53000135BDC /* misc */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +210,8 @@
 			dependencies = (
 			);
 			name = NoteAntidote;
+			packageProductDependencies = (
+			);
 			productName = NoteAntidote;
 			productReference = 1DD7A35423FA8BF800280894 /* NoteAntidote.app */;
 			productType = "com.apple.product-type.application";
@@ -162,6 +230,8 @@
 				1DD7A36C23FA8BFB00280894 /* PBXTargetDependency */,
 			);
 			name = NoteAntidoteTests;
+			packageProductDependencies = (
+			);
 			productName = NoteAntidoteTests;
 			productReference = 1DD7A36A23FA8BFB00280894 /* NoteAntidoteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -180,6 +250,8 @@
 				1DD7A37723FA8BFC00280894 /* PBXTargetDependency */,
 			);
 			name = NoteAntidoteUITests;
+			packageProductDependencies = (
+			);
 			productName = NoteAntidoteUITests;
 			productReference = 1DD7A37523FA8BFC00280894 /* NoteAntidoteUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -190,6 +262,9 @@
 		1DD7A34C23FA8BF800280894 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					1,
+				);
 				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Лиза  Малиновская";
@@ -208,7 +283,7 @@
 				};
 			};
 			buildConfigurationList = 1DD7A34F23FA8BF800280894 /* Build configuration list for PBXProject "NoteAntidote" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -216,6 +291,9 @@
 				Base,
 			);
 			mainGroup = 1DD7A34B23FA8BF800280894;
+			packageReferences = (
+				1DB86B2223FD8A9200D72980 /* XCRemoteSwiftPackageReference "Swift-Kuery-PostgreSQL" */,
+			);
 			productRefGroup = 1DD7A35523FA8BF800280894 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,9 +337,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DD7A38C23FA997E00280894 /* CardTableViewCell.swift in Sources */,
 				1DD7A35C23FA8BF800280894 /* ViewController.swift in Sources */,
+				1DF2C6D223FB0652004FCB5A /* Card.swift in Sources */,
+				1D32F42523FC59EF0078EDC3 /* CardSetterViewController.swift in Sources */,
 				1DD7A35823FA8BF800280894 /* AppDelegate.swift in Sources */,
+				1DAF125823FD605600B5F8F5 /* cardData.swift in Sources */,
+				1D1DE25023FDBC2D00861655 /* ItemsViewController.swift in Sources */,
+				1D0B594B23FDC4F800135BDC /* cardsSingleton.swift in Sources */,
 				1DD7A35A23FA8BF800280894 /* SceneDelegate.swift in Sources */,
+				1DF2C6CF23FB0644004FCB5A /* Task.swift in Sources */,
+				1DA4ECC923FC1929007C99A4 /* RootViewController.swift in Sources */,
+				1DD7A38E23FABAA700280894 /* CardTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +356,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DF2C6D023FB0644004FCB5A /* Task.swift in Sources */,
+				1DAF125923FD605600B5F8F5 /* cardData.swift in Sources */,
+				1DF2C6D323FB0652004FCB5A /* Card.swift in Sources */,
 				1DD7A36F23FA8BFB00280894 /* NoteAntidoteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,7 +534,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.companyname.NoteAntidote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -462,7 +552,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.companyname.NoteAntidote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -590,6 +680,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1DB86B2223FD8A9200D72980 /* XCRemoteSwiftPackageReference "Swift-Kuery-PostgreSQL" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/IBM-Swift/Swift-Kuery-PostgreSQL.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 1DD7A34C23FA8BF800280894 /* Project object */;
 }

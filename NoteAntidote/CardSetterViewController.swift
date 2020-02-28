@@ -12,7 +12,7 @@ protocol EmbeddedVCDelegate: class {
     func returnCardId() -> Int
 }
 
-class CardSetterViewController: UITableViewController, TasksProtocol, EmbeddedVCDelegate {
+class CardSetterViewController: UITableViewController, UITextFieldDelegate, EmbeddedVCDelegate {
     
     func returnCardId() -> Int {
         print("\(cardId)")
@@ -53,16 +53,14 @@ class CardSetterViewController: UITableViewController, TasksProtocol, EmbeddedVC
     }
     
     @IBAction func createButtonPressed(_ sender: Any) {
-//        var tas = vc.tasks
         var count = 0
-        for task in tasks ?? [] {
+        for task in tasks {
             task.cardId = card.cardId
             task.taskId = card.cardId + count
             cardData.insertTask(id: task.cardId, taskTitle: task.titleText, taskId: task.taskId)
             count += 1
         }
-
-        card.tasks = tasks ?? []
+        card.tasks = tasks
         if let text = cardNameTextField.text {
             card.titleText = text
         }
@@ -75,19 +73,11 @@ class CardSetterViewController: UITableViewController, TasksProtocol, EmbeddedVC
 
         print("pressed")
     }
-  
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        cards = cardData.readCards()
-//    }
-
-
     
     //MARK: - outlets
     @IBOutlet weak var cardNameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     
-    //MARK: - actions
-
     //MARK: - make button funcion
 
     func makeButtonWithText(text:String) -> UIButton {
@@ -99,6 +89,12 @@ class CardSetterViewController: UITableViewController, TasksProtocol, EmbeddedVC
 
         return button
     }
-    //MARK: - add section
+    //    MARK: - keyboard dissmiss setup
+
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+            textField.resignFirstResponder()  //if desired
+            return true
+        }
 
 }

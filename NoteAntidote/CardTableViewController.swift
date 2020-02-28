@@ -22,7 +22,6 @@ class CardTableViewController: UITableViewController {
         navigationItem.title = "Cards"
         
         cards = cardData.readCards()
-        
         tableView.separatorColor = .black
         
         tableView.register(CardTableViewCell.self, forCellReuseIdentifier: "cellId")

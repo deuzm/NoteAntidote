@@ -13,7 +13,7 @@ protocol TasksProtocol
     func tasksAssigned(type: [Task])
 }
 
-class RootViewController: UITableViewController {
+class RootViewController: UITableViewController, UITextFieldDelegate {
 
     
 
@@ -36,25 +36,21 @@ class RootViewController: UITableViewController {
         super.viewWillAppear(animated)
         cardId = delegate?.returnCardId()
     }
-//    MARK: - actions
+//    MARK: - keyboard dissmiss setup
 
-    @IBAction func taskTextFieldEditingFinished(_ sender: Any) {
-
-        let textField = sender as! UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        let textField = sender as! UITextField
         if(textField.text != "" && textField.text != nil)
         {
-            //TODO
-            
-            
-//            let cardId = cardSetterVC?.cardId
-            print("\(cardId)")
             tasks.append(Task(cardId: cardId ?? 0, taskId: tasks.count + (cardId ?? 0), title: "\(textField.text ?? "")"))
             
             if let parentVC = self.parent as? CardSetterViewController {
                 parentVC.tasks = tasks
             }
-            
-
             
             tableView.beginUpdates()
 
@@ -64,8 +60,16 @@ class RootViewController: UITableViewController {
             textField.text = ""
             print(tasks[tasks.count - 1].titleText)
         }
-        
+//        textField.resignFirstResponder()  //if desired
+        performAction()
+        return true
     }
+
+    func performAction() {
+        print("RETURN")
+    }
+    
+    //MARK: - data sourse
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

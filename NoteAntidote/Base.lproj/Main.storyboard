@@ -215,8 +215,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vl6-MA-BMN">
-                                                    <rect key="frame" x="94" y="10" width="186" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vl6-MA-BMN">
+                                                    <rect key="frame" x="147" y="10" width="81" height="30"/>
                                                     <state key="normal" title="Create card"/>
                                                     <connections>
                                                         <action selector="createButtonPressed:" destination="2jl-I5-3pO" eventType="touchUpInside" id="YRF-cX-ucq"/>

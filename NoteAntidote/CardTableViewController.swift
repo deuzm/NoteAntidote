@@ -16,10 +16,6 @@ class CardTableViewController: UITableViewController {
     var cardData = CardData()
     var cardId: Int = 0
     
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
-//    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,6 +81,7 @@ class CardTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         cardId = cards[indexPath.row].cardId
+        print("\(cardId)")
         self.performSegue(withIdentifier: "Items", sender: self)
     }
     

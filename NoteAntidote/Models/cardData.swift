@@ -19,7 +19,7 @@ class CardData {
     init() {
         db = openDatabase()
         createTable(tableStringPart: "card(Id INTEGER PRIMARY KEY,cardTitle TEXT,cardDescription TEXT);")
-        createTable(tableStringPart: "task(Id INTEGER PRIMARY KEY,itemTitle TEXT);")
+        createTable(tableStringPart: "item(taskId INTEGER PRIMARY KEY,taskTitle TEXT,Id INTEGER);")
     }
     
     func refresh() {
@@ -62,6 +62,7 @@ class CardData {
     
     func insertTask(id: Int, taskTitle: String, taskId: Int)
     {
+        
         let tasks = readTasks(cardId: id) ?? []
         for task in tasks
         {
@@ -70,8 +71,9 @@ class CardData {
                 return
             }
         }
+        print("Task Id: \(taskId)")
         //todo
-        let insertStatementString = "INSERT INTO task (Id, cardTitle, taskId) VALUES (?, ?, ?);"
+        let insertStatementString = "INSERT INTO item (taskId, taskTitle, Id) VALUES (?, ?, ?);"
         var insertStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             sqlite3_bind_int(insertStatement, 1, Int32(id))
@@ -121,26 +123,26 @@ class CardData {
     
     func readTasks(cardId: Int) -> [Task]? {
         var tasks: [Task] = []
-        let itemQcueryStatementString = "SELECT * FROM task;"
+        let itemQcueryStatementString = "SELECT * FROM item;"
         var taskQueryStatement: OpaquePointer? = nil
         
         if sqlite3_prepare_v2(db, itemQcueryStatementString, -1, &taskQueryStatement, nil) == SQLITE_OK {
             while sqlite3_step(taskQueryStatement) == SQLITE_ROW {
-                let id = sqlite3_column_int((taskQueryStatement), 0)
+                let taskId = sqlite3_column_int((taskQueryStatement), 0)
                 let taskTitle = String(describing: String(cString: sqlite3_column_text(taskQueryStatement, 1)))
-                let card = sqlite3_column_int(taskQueryStatement, 3)
-                if(cardId == id)
+                let Id = sqlite3_column_int(taskQueryStatement, 2)
+                if(cardId == Id)
                 {
-                    tasks.append(Task(cardId: Int(card), taskId: Int(id), title: taskTitle))
+                    tasks.append(Task(cardId: Int(Id), taskId: Int(taskId), title: taskTitle))
                 }
                 print("Query Result:")
-                print("\(card) |\(id) | \(taskTitle)")
+                print("\(Id) |\(taskId) | \(taskTitle)")
             }
         } else {
             print("SELECT statement could not be prepared")
         }
         sqlite3_finalize(taskQueryStatement)
-        return cards
+        return tasks
     }
     
     
@@ -171,12 +173,27 @@ class CardData {
     
     func deleteCard(cardId: Int) {
         deleteByID(id: cardId, table: "card")
-        deleteByID(id: cardId, table: "task")
+        deleteByID(id: cardId, table: "item")
     }
     
+    func deleteItemTable() {
+        let deleteStatementStirng = "DELETE FROM item;"
+        var deleteStatement: OpaquePointer? = nil
+            if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
+               if sqlite3_step(deleteStatement) == SQLITE_DONE {
+                   print("Successfully deleted row.")
+               } else {
+                   print("Could not delete row.")
+               }
+            } else {
+               print("DELETE statement could not be prepared")
+            }
+            sqlite3_finalize(deleteStatement)
+        
+    }
     
     func deleteTask(taskId: Int) {
-        let deleteStatementStirng = "DELETE FROM task WHERE taskId = ?;"
+        let deleteStatementStirng = "DELETE FROM item WHERE Id = ?;"
         var deleteStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
            sqlite3_bind_int(deleteStatement, 1, Int32(taskId))

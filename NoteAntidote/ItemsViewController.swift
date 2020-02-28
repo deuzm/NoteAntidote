@@ -17,6 +17,7 @@ class ItemsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("\(cardId)")
         tasks = cardData.readTasks(cardId: cardId) ?? []
         
         // Do any additional setup after loading the view.
@@ -50,17 +51,26 @@ class ItemsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete{
+            let taskId = tasks[indexPath.row].taskId
+
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.cardData.deleteTask(taskId: taskId)
+            }
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        cardData.refresh()
+//    }
     
     
     @IBAction func getDataTroughSegue(sender: UIStoryboardSegue) {
         if sender.source is CardTableViewController {
             if let senderVC = sender.source as? CardTableViewController {
                 cardId = senderVC.cardId
-                tasks = cardData.readTasks(cardId: cardId) ?? []
+//                tasks = cardData.readTasks(cardId: cardId) ?? []
             }
             tableView.reloadData()
         }

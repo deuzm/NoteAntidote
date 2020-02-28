@@ -21,67 +21,52 @@ class RootViewController: UITableViewController {
     var tasks: [Task] = []
     var card: Card = Card(tasks: [], cardTitleText: "Default", cardDescription: "Default")
     var cardData = CardData()
+    var cardId: Int?
     var firstCell = true
-    var cardSetterVC: CardSetterViewController?
-    var delegate:TasksProtocol?
+    weak var delegate: EmbeddedVCDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
-        cardSetterVC = CardSetterViewController()
+//        cardSetterVC = CardSetterViewController()
         
         // Do any additional setup after loading the view.
     }
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
-//    
-
-    //MARK: - outlets
-//    @IBOutlet weak var taskTitle: UILabel!
-//    @IBOutlet weak var taskTextField: UITextField!
-//    @IBOutlet weak var taskCell: UIView!
-//
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        cardId = delegate?.returnCardId()
+    }
 //    MARK: - actions
 
-    
-    
     @IBAction func taskTextFieldEditingFinished(_ sender: Any) {
-        cardSetterVC?.completionHandler = { self.tasks }
+
         let textField = sender as! UITextField
-        var a = "lol"
         if(textField.text != "" && textField.text != nil)
         {
             //TODO
             
-            let cardId = cardSetterVC?.cardId
-            tasks.append(Task(cardId: cardId ?? 0, taskId: tasks.count + (cardId ?? 0), title: "\(textField.text ?? a)"))
             
-           
+//            let cardId = cardSetterVC?.cardId
+            print("\(cardId)")
+            tasks.append(Task(cardId: cardId ?? 0, taskId: tasks.count + (cardId ?? 0), title: "\(textField.text ?? "")"))
+            
+            if let parentVC = self.parent as? CardSetterViewController {
+                parentVC.tasks = tasks
+            }
+            
+
+            
             tableView.beginUpdates()
 
             tableView.insertRows(at: [IndexPath(row: tasks.count, section: 0)], with: .top)
             tableView.endUpdates()
             
             textField.text = ""
-//            tableView.beginUpdates()
-//            tableView.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-//            tableView.endUpdates()
-            
             print(tasks[tasks.count - 1].titleText)
-            
-            delegate?.tasksAssigned(type: tasks)
-            
         }
         
     }
-    
-//    @IBAction func taskEditingDIdEnd(_ sender: Any) {
-//        taskTitle.text = taskTextField.text
-//        taskTextField.isHidden = true
-//    }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -117,19 +102,4 @@ class RootViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
-    
-    //MARK: - Passing items to cardSetter view controller
-    
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

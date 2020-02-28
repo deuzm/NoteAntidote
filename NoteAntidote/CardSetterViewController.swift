@@ -8,10 +8,27 @@
 
 import UIKit
 
-class CardSetterViewController: UITableViewController, TasksProtocol {
+protocol EmbeddedVCDelegate: class {
+    func returnCardId() -> Int
+}
+
+class CardSetterViewController: UITableViewController, TasksProtocol, EmbeddedVCDelegate {
+    
+    func returnCardId() -> Int {
+        print("\(cardId)")
+        return cardId
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let embeddedVC = segue.destination as? RootViewController {
+            embeddedVC.delegate = self
+        }
+        cards = cardData.readCards()
+    }
     
     func tasksAssigned(type: [Task]) {
         self.tasks = type
+        print("Shit")
     }
     
     //MARK: - properties
@@ -26,29 +43,26 @@ class CardSetterViewController: UITableViewController, TasksProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "Setting up card"
-        vc.delegate = self
+//        vc.delegate = self
+        cards = cardData.readCards()
+        cardId = (cards.last?.cardId ?? Int.random(in: 1...1000)) + 100
+        card.cardId = cardId
         
-        card.cardId = Int.random(in: 1...10000)
-        
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: navigationItem, action: #selector(doneCreatingCard))
-        
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func createButtonPressed(_ sender: Any) {
-        card.cardId = Int.random(in: 1...10000)
-
 //        var tas = vc.tasks
-//        var count = 0
-//        for task in tas ?? [] {
-//            task.cardId = card.cardId
-//            task.taskId = card.cardId + count
-//            cardData.insertTask(id: task.cardId, taskTitle: task.titleText, taskId: task.taskId)
-//            count += 1
-//        }
-//
-//        card.tasks = tas ?? []
+        var count = 0
+        for task in tasks ?? [] {
+            task.cardId = card.cardId
+            task.taskId = card.cardId + count
+            cardData.insertTask(id: task.cardId, taskTitle: task.titleText, taskId: task.taskId)
+            count += 1
+        }
+
+        card.tasks = tasks ?? []
         if let text = cardNameTextField.text {
             card.titleText = text
         }
@@ -61,26 +75,10 @@ class CardSetterViewController: UITableViewController, TasksProtocol {
 
         print("pressed")
     }
-    
-    
-//    @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {}
-    
-    @objc func doneCreatingCard() {
-
-//        self.performSegue(withIdentifier: "exitSetup", sender: self)
-//        dismiss(animated: true, completion: {})
-        print("LOL")
-    }
-    
-//    @IBAction func unwindToMainMenu(sender: UIStoryboardSegue)
-//    {
-//        let sourceViewController = sender.source
-//        // Pull any data from the view controller which initiated the unwind segue.
+  
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        cards = cardData.readCards()
 //    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        cards = cardData.readCards()
-    }
 
 
     
@@ -89,47 +87,8 @@ class CardSetterViewController: UITableViewController, TasksProtocol {
     @IBOutlet weak var descriptionTextField: UITextField!
     
     //MARK: - actions
-//    @IBAction func cardNameEditingDidEnd(_ sender: Any) {
-//        
-//    }
-//    
-//    @IBAction func descriptionEditingDidEnd(_ sender: Any) {
-//    }
-    
-//    @IBAction func pressed(_ sender: Any) {
-//        card.cardId = Int.random(in: 1...10000)
-//
-//        var tas = vc?.tasks ?? []
-//        var count = 0
-//        for task in tas {
-//            task.cardId = card.cardId
-//            task.taskId = card.cardId + count
-//            cardData.insertTask(id: task.cardId, taskTitle: task.titleText, taskId: task.taskId)
-//            count += 1
-//        }
-//
-//        card.tasks = tas
-//        if let text = cardNameTextField.text {
-//            card.titleText = text
-//        }
-//        if let text = descriptionTextField.text {
-//            card.cardDescription = text
-//        }
-//        cardData.insertCard(id: card.cardId, cardTitle: card.titleText, cardDescription: card.cardDescription)
-//
-//        print("pressed")
-//    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-//    {
-//        if segue.destination is RootViewController
-//        {
-//            let vc = segue.destination as? RootViewController
-//            tasks = vc?.tasks ?? []
-//        }
-//    }
 
-    //MARK: - button funcion
+    //MARK: - make button funcion
 
     func makeButtonWithText(text:String) -> UIButton {
         let button = UIButton(type: UIButton.ButtonType.system)
@@ -141,22 +100,5 @@ class CardSetterViewController: UITableViewController, TasksProtocol {
         return button
     }
     //MARK: - add section
-    @objc func addSection() {
-        
-        // TODO
-        
-        tasks.append(Task(cardId: 1, taskId: 1, title: "LOL"))
-
-        print("\(tasks.count - 1)")
-        let indexPath = IndexPath(row: tasks.count - 1, section: 2)
-
-        tableView.beginUpdates()
-
-        tableView.insertRows(at: [indexPath], with: .automatic)
-
-        tableView.endUpdates()
-    }
-
-    
 
 }

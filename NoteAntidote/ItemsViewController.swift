@@ -47,7 +47,6 @@ class ItemsViewController: UITableViewController, UITextFieldDelegate {
     func okButtonPressed(action: UIAlertAction!) {
         var taskId = tasks.last?.taskId ?? 0
         taskId += 1
-        print("\(taskId) + \(textFieldString) + \(cardId)")
         cardData.insertTask(id: cardId, taskTitle: textFieldString, taskId: taskId)
         tasks.append(Task(cardId: cardId, taskId: taskId, title: textFieldString))
         

@@ -36,8 +36,8 @@ class CardTableViewController: UITableViewController {
         let button = UIButton(type: UIButton.ButtonType.system)
         button.frame = CGRect(x: 10, y: 5, width: self.view.frame.width - 20, height: 30)
         button.setTitle(text, for: .normal)
-        button.setTitleColor( .black, for: .normal)
-        button.backgroundColor = .white
+        button.setTitleColor( .white, for: .normal)
+        button.backgroundColor = .none
         return button
     }
     
@@ -68,9 +68,15 @@ class CardTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CardTableViewCell
         cell.cardTitleLabel.text = cards[indexPath.row].titleText
         cell.cardDescriptionLabel .text = cards[indexPath.row].cardDescription
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .white
+        cell.selectedBackgroundView = backgroundView
+        
         return cell
     }
     
@@ -81,9 +87,10 @@ class CardTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         cardId = cards[indexPath.row].cardId
         print("\(cardId)")
+        
         self.performSegue(withIdentifier: "Items", sender: self)
     }
-    
+        
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if let navVC = segue.destination as? UINavigationController
@@ -100,9 +107,9 @@ class CardTableViewController: UITableViewController {
     //MARK: - adding footer
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
-        footerView.backgroundColor = .systemIndigo
         footerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height:
         50)
+        footerView.backgroundColor = .systemIndigo
         let button = makeButtonWithText(text: "Add")
         footerView.addSubview(button)
         button.addTarget(self, action: #selector(addCard), for: .touchUpInside)

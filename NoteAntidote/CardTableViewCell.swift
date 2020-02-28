@@ -33,10 +33,14 @@ class CardTableViewCell: UITableViewCell {
     
     lazy var backView: UIView = {
 //        let view = UIView(frame: CGRect(x: 10, y: 6, width: self.frame.width, height: self.backViewSize))
-        let view = UIView(frame: CGRect(x: 10, y: 0, width: self.frame.width, height: self.frame.height))
+        let rect = CGRect(x: 10, y: 0, width: self.frame.width, height: self.frame.height)
+        let view = UIView(frame: rect)
+        view.layer.cornerRadius = 20
+        view.clipsToBounds = true
         view.backgroundColor = UIColor.cyan
         return view
     }()
+    
     
     
     let cardTitleLabel: UILabel = {

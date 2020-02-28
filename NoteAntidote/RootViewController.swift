@@ -87,8 +87,13 @@ class RootViewController: UITableViewController, UITextFieldDelegate {
             cell.setEditing(false, animated: true)
             return cell
         }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellId", for: indexPath)
         cell.textLabel?.text = tasks[indexPath.row - 1].titleText
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .white
+        cell.selectedBackgroundView = backgroundView
+
         return cell
     }
     

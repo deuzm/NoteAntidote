@@ -8,21 +8,64 @@
 
 import UIKit
 
-class ItemsViewController: UITableViewController {
+class ItemsViewController: UITableViewController, UITextFieldDelegate {
 
     
     var tasks: [Task] = []
     var cardData: CardData = CardData()
     var cardId: Int = 0
+    var textFieldString: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("\(cardId)")
         tasks = cardData.readTasks(cardId: cardId) ?? []
-        
         // Do any additional setup after loading the view.
     }
     
+    //MARK: - actions
+    
+    @IBAction func addButton(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Add task", message: nil, preferredStyle: .alert)
+            
+        alert.addTextField(configurationHandler: addTaskTextField)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: self.okButtonPressed))
+        self.present(alert, animated: true)
+
+    }
+    
+    var textField: UITextField?
+    
+    func addTaskTextField(_ textField: UITextField) {
+        self.textField = textField
+        textField.placeholder = "add task"
+        textFieldString = textField.text ?? ""
+        textField.delegate = self
+    }
+    
+    func okButtonPressed(action: UIAlertAction!) {
+        var taskId = tasks.last?.taskId ?? 0
+        taskId += 1
+        print("\(taskId) + \(textFieldString) + \(cardId)")
+        cardData.insertTask(id: cardId, taskTitle: textFieldString, taskId: taskId)
+        tasks.append(Task(cardId: cardId, taskId: taskId, title: textFieldString))
+        
+        tableView.beginUpdates()
+
+        tableView.insertRows(at: [IndexPath(row: tasks.count - 1, section: 0)], with: .top)
+        tableView.endUpdates()
+        
+        print("Shiegv")
+        
+    }
+    //MARK: - editing did finish
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if(textField.text != "" && textField.text != nil) {
+            textFieldString = textField.text!
+        }
+    }
     
     //MARK: - Data sourse
     

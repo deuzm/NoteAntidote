@@ -19,6 +19,10 @@ class CardSetterViewController: UITableViewController, UITextFieldDelegate, Embe
         return cardId
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.children.first?.view.endEditing(true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let embeddedVC = segue.destination as? RootViewController {
             embeddedVC.delegate = self

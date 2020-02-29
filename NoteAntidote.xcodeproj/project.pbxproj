@@ -53,7 +53,7 @@
 		1DA4ECC823FC1929007C99A4 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		1DAF125723FD605600B5F8F5 /* cardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardData.swift; sourceTree = "<group>"; };
 		1DD3AD1123FD958100BCABA2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		1DD7A35423FA8BF800280894 /* NoteAntidote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteAntidote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DD7A35423FA8BF800280894 /* Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DD7A35723FA8BF800280894 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DD7A35923FA8BF800280894 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1DD7A35E23FA8BF800280894 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		1DD7A35523FA8BF800280894 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1DD7A35423FA8BF800280894 /* NoteAntidote.app */,
+				1DD7A35423FA8BF800280894 /* Cards.app */,
 				1DD7A36A23FA8BFB00280894 /* NoteAntidoteTests.xctest */,
 				1DD7A37523FA8BFC00280894 /* NoteAntidoteUITests.xctest */,
 			);
@@ -210,7 +210,7 @@
 			packageProductDependencies = (
 			);
 			productName = NoteAntidote;
-			productReference = 1DD7A35423FA8BF800280894 /* NoteAntidote.app */;
+			productReference = 1DD7A35423FA8BF800280894 /* Cards.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1DD7A36923FA8BFB00280894 /* NoteAntidoteTests */ = {
@@ -528,7 +528,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.companyname.NoteAntidote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cards;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -546,7 +546,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.companyname.NoteAntidote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cards;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

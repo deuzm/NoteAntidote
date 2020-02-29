@@ -63,8 +63,9 @@ class CardTableViewController: UITableViewController {
     
     func makeButtonWithText(text:String) -> UIButton {
         let button = UIButton(type: UIButton.ButtonType.system)
-        button.frame = CGRect(x: 10, y: 5, width: self.view.frame.width - 20, height: 30)
+        button.frame = CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: 30)
         button.setTitle(text, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25.0)
         button.setTitleColor( .white, for: .normal)
         button.backgroundColor = .none
         return button

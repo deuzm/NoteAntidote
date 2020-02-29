@@ -12,7 +12,15 @@ import UIKit
 class CardTableViewController: UITableViewController {
 
     //MARK: - properties
-    var cards: [Card] = [Card(tasks: [Task(cardId: 1, taskId: 1, title: "TODO")], cardTitleText: "Liliac", cardDescription: "Bronze")]
+    var cards: [Card] = []
+    var helloTasks: [Task] = [Task(cardId: 1, taskId: 1, title: "Here you can add tasks"),
+                         Task(cardId: 1, taskId: 2, title: "While creating a card"),
+                         Task(cardId: 1, taskId: 3, title: "...or by clicking (+)"),
+                         Task(cardId: 1, taskId: 4, title: "Try it right now!😉")]
+    var deleteTasks: [Task] = [Task(cardId: 100, taskId: 101, title: "Swipe left to delete me"),
+                        Task(cardId: 100, taskId: 102, title: "Delete me"),
+                        Task(cardId: 100, taskId: 103, title: "And Me!"),
+                        Task(cardId: 100, taskId: 104, title: "Please dont!😫")]
     var cardData = CardData()
     var cardId: Int = 0
     
@@ -21,13 +29,34 @@ class CardTableViewController: UITableViewController {
         
         navigationItem.title = "Cards"
         
-        cards = cardData.readCards()
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            print("Not first launch.")
+        } else {
+            guideCards()
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+        }
+        
+        
+        cards.append(contentsOf: cardData.readCards())
+        
         tableView.separatorColor = .black
         
         tableView.register(CardTableViewCell.self, forCellReuseIdentifier: "cellId")
     }
     
-    //MARK: - actions
+    //MARK: - first presence
+    
+    func guideCards() {
+        cardData.insertCard(id: 1, cardTitle: "Hello!", cardDescription: "This is card app")
+        cardData.insertCard(id: 100, cardTitle: "Deleting", cardDescription: "Swipe left to delete")
+        for task in helloTasks {
+            cardData.insertTask(id: task.cardId, taskTitle: task.titleText, taskId: task.taskId)
+        }
+        for task in deleteTasks {
+             cardData.insertTask(id: task.cardId, taskTitle: task.titleText, taskId: task.taskId)
+        }
+    }
     
     
     //MARK: - make button with text

@@ -15,8 +15,32 @@ class CardTableViewCell: UITableViewCell {
     
     var safeArea = UILayoutGuide()
     var backViewSize: CGFloat = 55
-    
     var cards: [Card] = []
+    
+    lazy var backView: UIView = {
+        let rect = CGRect(x: 10, y: 0, width: self.frame.width, height: self.frame.height)
+        let view = UIView(frame: rect)
+        view.layer.cornerRadius = 20
+        view.clipsToBounds = true
+        view.backgroundColor = UIColor.cyan
+        return view
+    }()
+    
+    
+    let cardTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "This is shit"
+        label.font = UIFont.boldSystemFont(ofSize: 25.0)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let cardDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "This is other shit"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     
     //initializers
@@ -31,59 +55,18 @@ class CardTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var backView: UIView = {
-//        let view = UIView(frame: CGRect(x: 10, y: 6, width: self.frame.width, height: self.backViewSize))
-        let rect = CGRect(x: 10, y: 0, width: self.frame.width, height: self.frame.height)
-        let view = UIView(frame: rect)
-        view.layer.cornerRadius = 20
-        view.clipsToBounds = true
-        view.backgroundColor = UIColor.cyan
-        return view
-    }()
-    
-    
-    
-    let cardTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "This is shit"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let cardDescriptionLabel: UILabel = {
-        let label = UILabel()
-        label.text = "This is other shit"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    
-    
-    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        addSubview(backView)
-//        // Configure the view for the selected state
-//    }
-//    
+    //MARK: - setting up labels and backview constraints
     func setUpViews() {
         self.addSubview(cardTitleLabel)
         self.addSubview(cardDescriptionLabel)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0][v1]-20-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": cardTitleLabel, "v1": cardDescriptionLabel]))
-
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-35-[v0]-0-[v1]-10-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": cardTitleLabel, "v1": cardDescriptionLabel]))
         
-//
-//        self.addSubview(cardDescriptionLabel)
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-100-[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": cardDescriptionLabel]))
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V|-5-[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": cardDescriptionLabel]))
-        //background view
-               
+        let views = ["title": cardTitleLabel,
+                     "description": cardDescriptionLabel]
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[title]-0-[description(40)]", options: NSLayoutConstraint.FormatOptions.alignAllLeading, metrics: nil, views: views)
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-30-[title]-10-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views)
+        addConstraints(verticalConstraints)
+        addConstraints(horizontalConstraints)
+ 
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[v0]-10-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": backView]))
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[v0]-5-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": backView]))

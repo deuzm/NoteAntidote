@@ -102,32 +102,14 @@ class ItemsViewController: UITableViewController, UITextFieldDelegate {
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        cardData.refresh()
-//    }
     
     
     @IBAction func getDataTroughSegue(sender: UIStoryboardSegue) {
         if sender.source is CardTableViewController {
             if let senderVC = sender.source as? CardTableViewController {
                 cardId = senderVC.cardId
-//                tasks = cardData.readTasks(cardId: cardId) ?? []
             }
             tableView.reloadData()
         }
     }
-    
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

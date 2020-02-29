@@ -9,7 +9,7 @@
         <!--Tasks-->
         <scene sceneID="z5s-Re-aSU">
             <objects>
-                <tableViewController id="xGd-5L-Xor" customClass="ItemsViewController" customModule="NoteAntidote" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xGd-5L-Xor" customClass="ItemsViewController" customModule="Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ta2-Dx-Pce" customClass="Items">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,7 @@
         <!--Root View Controller-->
         <scene sceneID="aLJ-go-5pK">
             <objects>
-                <tableViewController restorationIdentifier="cardTableView" modalTransitionStyle="partialCurl" id="48D-A1-43T" customClass="CardTableViewController" customModule="NoteAntidote" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="cardTableView" modalTransitionStyle="partialCurl" id="48D-A1-43T" customClass="CardTableViewController" customModule="Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RRD-cw-GPj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,7 +118,7 @@
         <!--Setting up a card-->
         <scene sceneID="rCF-n7-b1C">
             <objects>
-                <tableViewController id="2jl-I5-3pO" customClass="CardSetterViewController" customModule="NoteAntidote" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="2jl-I5-3pO" customClass="CardSetterViewController" customModule="Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Aj9-41-agT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -210,7 +210,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzs-xy-bIC">
-                                                    <rect key="frame" x="10" y="11" width="323" height="262"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="273"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <connections>
                                                         <segue destination="FFz-JJ-jY6" kind="embed" id="7R1-dC-vNu"/>
@@ -218,6 +218,10 @@
                                                 </containerView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Lh8-I9-dYL" appends="YES" id="gLT-1D-B9v"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="49" id="8fU-PI-bIN">
                                         <rect key="frame" x="16" y="522.5" width="343" height="49"/>
@@ -299,44 +303,21 @@
         <!--Root View Controller-->
         <scene sceneID="uVo-Ev-KgS">
             <objects>
-                <tableViewController restorationIdentifier="rootViewController" id="FFz-JJ-jY6" customClass="RootViewController" customModule="NoteAntidote" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="rootViewController" id="FFz-JJ-jY6" customClass="RootViewController" customModule="Cards" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MC1-S8-8CI">
-                        <rect key="frame" x="0.0" y="0.0" width="323" height="262"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="273"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="taskCellId" textLabel="h10-hM-0jK" imageView="sxK-Ng-KXI" style="IBUITableViewCellStyleDefault" id="jt0-hF-89E">
-                                <rect key="frame" x="0.0" y="28" width="323" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="taskCellId" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jt0-hF-89E" id="ZPA-hc-iGI">
-                                    <rect key="frame" x="0.0" y="0.0" width="323" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h10-hM-0jK">
-                                            <rect key="frame" x="55" y="0.0" width="252" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="hexagon.fill" catalog="system" id="sxK-Ng-KXI">
-                                            <rect key="frame" x="17.5" y="11" width="21" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <accessibility key="accessibilityConfiguration" identifier="taskCellId"/>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="editor" id="RBv-uK-WNJ">
-                                <rect key="frame" x="0.0" y="71.5" width="323" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="343" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="task" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RBv-uK-WNJ" id="JVI-aO-iNU">
-                                    <rect key="frame" x="0.0" y="0.0" width="323" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U4s-zS-2a1">
-                                            <rect key="frame" x="20" y="4.5" width="283" height="34.5"/>
+                                            <rect key="frame" x="20" y="4.5" width="303" height="34.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartInsertDeleteType="yes"/>
                                             <connections>
@@ -353,6 +334,29 @@
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="taskCellId"/>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="taskCellId" textLabel="h10-hM-0jK" imageView="sxK-Ng-KXI" style="IBUITableViewCellStyleDefault" id="jt0-hF-89E">
+                                <rect key="frame" x="0.0" y="71.5" width="343" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="taskCellId" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jt0-hF-89E" id="ZPA-hc-iGI">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h10-hM-0jK">
+                                            <rect key="frame" x="55" y="0.0" width="272" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="hexagon.fill" catalog="system" id="sxK-Ng-KXI">
+                                            <rect key="frame" x="17.5" y="11" width="21" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="taskCellId"/>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="FFz-JJ-jY6" id="GF6-TY-XF2"/>
@@ -361,6 +365,7 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Pv-HN-m2O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Lh8-I9-dYL"/>
             </objects>
             <point key="canvasLocation" x="2550.7246376811595" y="833.70535714285711"/>
         </scene>

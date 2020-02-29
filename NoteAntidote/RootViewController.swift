@@ -16,7 +16,6 @@ protocol TasksProtocol
 class RootViewController: UITableViewController, UITextFieldDelegate {
 
     
-
     //MARK: - properties
     var tasks: [Task] = []
     var card: Card = Card(tasks: [], cardTitleText: "Default", cardDescription: "Default")
@@ -28,19 +27,24 @@ class RootViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
-//        cardSetterVC = CardSetterViewController()
         
-        // Do any additional setup after loading the view.
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.touch))
+        recognizer.numberOfTapsRequired = 1
+        recognizer.numberOfTouchesRequired = 1
+        tableView.addGestureRecognizer(recognizer)
     }
+    
+  
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cardId = delegate?.returnCardId()
     }
 //    MARK: - keyboard dissmiss setup
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+    @objc func touch() {
+          self.view.endEditing(true)
+      }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 //        let textField = sender as! UITextField
@@ -60,7 +64,6 @@ class RootViewController: UITableViewController, UITextFieldDelegate {
             textField.text = ""
             print(tasks[tasks.count - 1].titleText)
         }
-//        textField.resignFirstResponder()  //if desired
         performAction()
         return true
     }
